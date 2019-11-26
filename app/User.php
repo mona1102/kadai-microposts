@@ -96,9 +96,9 @@ class User extends Authenticatable
     public function favorite($micropostId)
     {
         $exist = $this->is_favorite($micropostId);
-        $its_me = $this->id == $micropostId;
+        // $its_me = $this->id == $micropostId;
         
-        if ($exist || $its_me) {
+        if ($exist) {
             return false;
         } else {
             $this->favorites()->attach($micropostId);
@@ -109,9 +109,9 @@ class User extends Authenticatable
     public function unfavorite($micropostId)
     {
         $exist = $this->is_favorite($micropostId);
-        $its_me = $this->id == $micropostId;
+        // $its_me = $this->id == $micropostId;
         
-        if ($exist && !$its_me) {
+        if ($exist) {
             $this->favorites()->detach($micropostId);
             return true;
         } else {
